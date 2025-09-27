@@ -196,26 +196,29 @@
     .item h3{margin:0 0 6px;font-size:15px}
 
     /* Contact */
-    .contact-list{display:flex;flex-direction:column;gap:12px}
-    .contact-btn{
+    .contact-list{
       display:flex;
-      align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:8px;
-      font-weight:600;
-      text-decoration:none;
-      color:white;
-      transition: all 0.25s ease;
+      flex-direction:column;
+      gap:10px;
     }
-    .contact-btn.github{background:#24292e;}
-    .contact-btn.github:hover{background:#000;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.3);}
-    .contact-btn.linkedin{background:#0a66c2;}
-    .contact-btn.linkedin:hover{background:#004182;transform:translateY(-2px);box-shadow:0 4px 12px rgba(10,102,194,0.4);}
-    .contact-btn.email{background:#ea4335;}
-    .contact-btn.email:hover{background:#c5221f;transform:translateY(-2px);box-shadow:0 4px 12px rgba(234,67,53,0.4);}
-
-    .contact-btn svg{width:18px;height:18px;fill:white}
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-btn svg { flex-shrink: 0; }
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .contact-btn.email { background: #e74c3c; color: #fff; }
+    .contact-btn.github { background: #2d333b; color: #fff; }
+    .contact-btn.linkedin { background: #0b76ef; color: #fff; }
 
     footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 
@@ -223,7 +226,7 @@
     @media print{
       body{padding:0;background:white;color:black}
       .hero{background:transparent;box-shadow:none}
-      .btn,.toggle-theme,.contact-btn{display:none}
+      .btn,.toggle-theme{display:none}
     }
 
     /* small helpers */
@@ -323,17 +326,19 @@
         <div class="card" id="contact">
           <h2>Contact</h2>
           <div class="contact-list">
-            <a class="contact-btn email" href="mailto:imoalipour@gmail.com" target="_blank" rel="noopener">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 13.065L0 6V18a2 2 0 002 2h20a2 2 0 002-2V6l-12 7.065zM22 4H2a2 2 0 00-2 2l12 7 12-7a2 2 0 00-2-2z"/></svg>
+            <a href="mailto:imoalipour@gmail.com" class="contact-btn email">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
               imoalipour@gmail.com
             </a>
-            <a class="contact-btn github" href="https://github.com/mohammad-alipour" target="_blank" rel="noopener">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.757-1.333-1.757-1.089-.744.083-.729.083-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.762-1.605-2.665-.3-5.466-1.333-5.466-5.931 0-1.31.469-2.381 1.235-3.221-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23a11.52 11.52 0 013.003-.404c1.018.005 2.042.138 3.003.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.241 2.873.118 3.176.77.84 1.234 1.911 1.234 3.221 0 4.609-2.803 5.628-5.475 5.921.43.372.823 1.103.823 2.222v3.293c0 .319.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
-              github.com/mohammad-alipour
+
+            <a href="https://github.com/mohammad-alipour" target="_blank" rel="noopener" class="contact-btn github">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.3.8-.6v-2c-3.2.7-3.8-1.5-3.8-1.5-.5-1.1-1.2-1.4-1.2-1.4-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1 1 .1.6.2 1.8.2.3-.7.6-1.1.9-1.3-2.5-.3-5.1-1.3-5.1-5.7 0-1.2.4-2.2 1.1-3-.1-.3-.5-1.5.1-3 0 0 .9-.3 3 .9.9-.2 1.8-.4 2.7-.4s1.8.1 2.7.4c2-1.2 3-.9 3-.9.6 1.5.2 2.7.1 3 .7.8 1.1 1.8 1.1 3 0 4.4-2.6 5.3-5.1 5.7.6.5 1 .8 1 .8v2.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.7 7.9-10.9C23.5 5.65 18.35.5 12 .5z"/></svg>
+              mohammad-alipour
             </a>
-            <a class="contact-btn linkedin" href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank" rel="noopener">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .774 0 1.729v20.542C0 23.225.79 24 1.77 24h20.46C23.2 24 24 23.225 24 22.271V1.729C24 .774 23.2 0 22.23 0zM7.12 20.452H3.56V9h3.56v11.452zM5.34 7.548a2.062 2.062 0 01-2.06-2.06 2.062 2.062 0 012.06-2.06c1.14 0 2.06.92 2.06 2.06 0 1.14-.92 2.06-2.06 2.06zm15.11 12.904h-3.55v-5.605c0-1.337-.027-3.058-1.86-3.058-1.862 0-2.148 1.454-2.148 2.958v5.705h-3.55V9h3.41v1.561h.05c.475-.9 1.635-1.85 3.367-1.85 3.6 0 4.268 2.37 4.268 5.452v6.289z"/></svg>
-              linkedin.com/in/Mohmmadalipour
+
+            <a href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank" rel="noopener" class="contact-btn linkedin">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.73c0-1.37-.02-3.13-1.91-3.13-1.91 0-2.2 1.49-2.2 3.03v5.83H9.24V9h3.41v1.56h.05c.48-.9 1.65-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              Mohmmadalipour
             </a>
           </div>
         </div>
@@ -352,26 +357,15 @@
         const href = a.getAttribute('href');
         if(href === '#') return;
         e.preventDefault();
-        const el = document.querySelector(href);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        document.querySelector(href).scrollIntoView({behavior:'smooth'});
       })
     });
 
-    // Dark mode toggle
-    const toggleBtn = document.getElementById('themeToggle');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme');
-
-    if(savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      document.body.classList.add('dark');
-      toggleBtn.textContent = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
+    // Theme toggle
+    const btn = document.getElementById('themeToggle');
+    btn.addEventListener('click', () => {
       document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      toggleBtn.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
     });
   </script>
 </body>
