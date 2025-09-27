@@ -202,7 +202,10 @@ body.dark .item{background:#1c1c1c;border:1px solid #333}
   text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.contact-btn svg { flex-shrink: 0; }
+.contact-btn i { 
+  flex-shrink: 0; 
+  font-size: 16px; 
+}
 .contact-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
