@@ -1,25 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Mohammad Alipour</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mohammad Alipour — Resume</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Resume / personal site of Mohammad Alipour — front-end, clean and professional." />
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background-color: #f5f5f5;
+    :root{
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --muted: #69707a;
+      --accent: #0b76ef;
+      --glass: rgba(255,255,255,0.6);
+      color-scheme: light;
+      --radius: 12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-    h1 {
-      color: #333;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+      font-size:16px;
     }
-    p {
-      color: #555;
+    .wrap{
+      width:100%;
+      max-width:980px;
     }
+
+    /* Header / Hero */
+    .hero{
+      background: linear-gradient(90deg, rgba(11,118,239,0.08), rgba(11,118,239,0.02));
+      border-radius:var(--radius);
+      padding:28px;
+      display:flex;
+      gap:24px;
+      align-items:center;
+      margin-bottom:20px;
+    }
+    .avatar{
+      width:110px;height:110px;border-radius:18px;flex:0 0 110px;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#fff,#f2f6ff);box-shadow:0 6px 18px rgba(11,118,239,0.08);
+    }
+    .avatar svg{width:72px;height:72px;opacity:0.95}
+    .hero h1{margin:0;font-size:26px;font-weight:800}
+    .hero p{margin:6px 0 0;color:var(--muted)}
+    .hero .ctas{margin-top:12px}
+    .btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
+    .btn-primary{background:var(--accent);color:white}
+    .btn-outline{border:1px solid rgba(11,118,239,0.12);background:transparent;color:var(--accent)}
+
+    /* Grid layout */
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 320px;
+      gap:20px;
+    }
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .hero{flex-direction:row}
+    }
+
+    /* Card */
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(36,37,38,0.06)}
+    h2{margin:0 0 12px;font-size:18px}
+
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:linear-gradient(180deg,#f7fbff,#ffffff);border-radius:999px;padding:8px 12px;font-weight:600;font-size:14px;border:1px solid rgba(11,118,239,0.06)}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    @media (max-width:500px){.projects{grid-template-columns:1fr}}
+    .project{padding:12px;border-radius:10px;background:linear-gradient(180deg,#fff,#fafcff);border:1px solid rgba(10,10,10,0.03)}
+    .project a{display:inline-block;margin-top:8px;text-decoration:none;font-weight:600;color:var(--accent)}
+
+    /* Timeline */
+    .timeline{display:flex;flex-direction:column;gap:10px}
+    .item{padding:10px;border-radius:8px;background:linear-gradient(180deg,#ffffff,#fbfbff);border:1px solid rgba(0,0,0,0.03)}
+    .item .meta{font-size:13px;color:var(--muted);margin-bottom:6px}
+    .item h3{margin:0 0 6px;font-size:15px}
+
+    /* Contact */
+    .contact-list{display:flex;flex-direction:column;gap:8px}
+    .contact-list a{display:inline-block;text-decoration:none;color:var(--accent);font-weight:600}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Print-friendly */
+    @media print{
+      body{padding:0;background:white}
+      .hero{background:transparent;box-shadow:none}
+      .btn{display:none}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .small{font-size:13px}
   </style>
 </head>
 <body>
-  <h1>Hello 👋 I'm Mohammad Alipour</h1>
-  <p>Welcome to my personal website. This is where I will showcase my projects and resume.</p>
+  <div class="wrap">
+    <header class="hero">
+      <div class="avatar" aria-hidden="true">
+        <!-- SVG placeholder avatar -->
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="4" fill="#e9f2ff"/>
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4z" fill="#0b76ef" opacity="0.95"/>
+          <path d="M4 20c0-2.67 3.58-4 8-4s8 1.33 8 4v.5H4V20z" fill="#d8eaff"/>
+        </svg>
+      </div>
+
+      <div style="flex:1">
+        <h1>Mohammad Alipour</h1>
+        <p class="muted">Front-End Developer — Clean, responsive interfaces & performance-minded</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#contact">Contact</a>
+          <a class="btn btn-outline" href="#" onclick="event.preventDefault(); window.print();">Print / Download</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="grid">
+      <!-- MAIN COLUMN -->
+      <section>
+        <div class="card" style="margin-bottom:14px">
+          <h2>About</h2>
+          <p class="muted small">I build front-end experiences with attention to performance, accessibility and clean design. Currently focused on modern HTML, CSS and lightweight JS for production-ready sites.</p>
+        </div>
+
+        <div class="card" style="margin-bottom:14px">
+          <h2>Projects</h2>
+          <div class="projects">
+            <div class="project">
+              <strong>Portfolio Website</strong>
+              <p class="small muted">Single-file responsive portfolio with project showcase and contact form (this site).</p>
+              <a href="#">Live →</a>
+            </div>
+            <div class="project">
+              <strong>Cafe Menu API</strong>
+              <p class="small muted">Go + PostgreSQL API for a cafe menu — deployed and monitored.</p>
+              <a href="#">Repo →</a>
+            </div>
+            <div class="project">
+              <div class="project">
+                <strong>VPN Sales Dashboard</strong>
+                <p class="small muted">Lightweight dashboard for daily/monthly income (internal tool).</p>
+                <a href="#">Repo →</a>
+              </div>
+            </div>
+            <div class="project">
+              <div class="project">
+                <strong>Other</strong>
+                <p class="small muted">Open to freelance & team opportunities.</p>
+                <a href="#">Contact →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Experience</h2>
+          <div class="timeline">
+            <div class="item">
+              <div class="meta">2024 — Present</div>
+              <h3>Front-End Developer — Freelance</h3>
+              <p class="small muted">Worked on multiple small-to-medium projects: landing pages, dashboards, and UIs focused on responsiveness and speed.</p>
+            </div>
+
+            <div class="item">
+              <div class="meta">2022 — 2024</div>
+              <h3>Web Developer — (Your Company)</h3>
+              <p class="small muted">Contributed to back-end integrations, API consumption and front-end optimizations.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="card" style="margin-bottom:14px">
+          <h2>Skills</h2>
+          <div class="skills">
+            <span class="chip">HTML</span>
+            <span class="chip">CSS</span>
+            <span class="chip">JavaScript</span>
+            <span class="chip">Golang (basic)</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">Git</span>
+            <span class="chip">Responsive Design</span>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:14px">
+          <h2>Education</h2>
+          <div class="small muted">Associate Degree in Computer Engineering (in progress)</div>
+          <div class="meta small muted">University — Tehran</div>
+        </div>
+
+        <div class="card" id="contact">
+          <h2>Contact</h2>
+          <div class="contact-list">
+            <div class="small muted">Email</div>
+            <a href="mailto:you@example.com">you@example.com</a>
+            <div class="small muted">GitHub</div>
+            <a href="https://github.com/mohammad-alipour" target="_blank" rel="noopener">github.com/mohammad-alipour</a>
+            <div class="small muted">LinkedIn</div>
+            <a href="#">linkedin.com/in/your-name</a>
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <footer>
+      Built with ❤️ — Clean & printable resume template. Replace placeholders in the file with your real info.
+    </footer>
+  </div>
+
+  <script>
+    // small helpers: smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const href = a.getAttribute('href');
+        if(href === '#') return;
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+      })
+    })
+  </script>
 </body>
 </html>
