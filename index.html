@@ -1,353 +1,240 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Mohammad Alipour — Resume</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <meta name="description" content="Resume / personal site of Mohammad Alipour — back-end, clean and professional." />
   <style>
-    :root{
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --muted: #69707a;
+    :root {
+      --bg: #ffffff;
+      --text: #222222;
+      --card: #f5f5f5;
       --accent: #0b76ef;
-      --radius: 12px;
-      color-scheme: light;
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
     }
-
-    body.dark {
-      --bg: #111;
-      --card: #1a1a1a;
-      --muted: #aaa;
-      --accent: #4ea1ff;
-      color-scheme: dark;
-      color: #f5f5f5;
+    [data-theme="dark"] {
+      --bg: #0d1117;
+      --text: #e6edf3;
+      --card: #161b22;
+      --accent: #4493f8;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:var(--bg);
-      color:#222;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      line-height:1.5;
-      padding:32px 20px;
-      display:flex;
-      justify-content:center;
-      font-size:16px;
-      transition: background 0.3s ease, color 0.3s ease;
+    body {
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      transition: all 0.3s ease;
     }
-    .wrap{width:100%;max-width:980px}
-
-    /* Header / Hero */
-    .hero{
-      background: linear-gradient(90deg, rgba(11,118,239,0.08), rgba(11,118,239,0.02));
-      border-radius:var(--radius);
-      padding:28px;
-      display:flex;
-      gap:24px;
-      align-items:center;
-      margin-bottom:20px;
-      transition: background 0.3s ease;
+    main {
+      width: 100%;
+      max-width: 800px;
+      display: grid;
+      gap: 1rem;
     }
-    body.dark .hero{
-      background: linear-gradient(90deg, rgba(78,161,255,0.15), rgba(78,161,255,0.05));
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
     }
-
-    .avatar{
-      width:110px;height:110px;border-radius:18px;flex:0 0 110px;
-      display:flex;align-items:center;justify-content:center;
-      overflow:hidden;
-      box-shadow:0 6px 18px rgba(11,118,239,0.08);
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-    .avatar img{
-      width:100%;height:100%;border-radius:18px;object-fit:cover;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    h1, h2, h3 {
+      margin: 0 0 0.5rem;
     }
-    .avatar img:hover{
-      transform: scale(1.08);
-      box-shadow:0 8px 20px rgba(0,0,0,0.25);
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
     }
-
-    .hero h1{margin:0;font-size:26px;font-weight:800}
-    .hero p{margin:6px 0 0;color:var(--muted)}
-    .hero .ctas{margin-top:12px;display:flex;gap:10px;align-items:center}
-
-    /* Buttons */
-    .btn{
-      display:inline-block;
-      padding:10px 14px;
-      border-radius:10px;
-      text-decoration:none;
-      font-weight:600;
+    .header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .header-content {
+      flex: 1;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
       transition: all 0.25s ease;
+      cursor: pointer;
     }
-    .btn-primary{
-      background:var(--accent);
-      color:white;
+    .btn-primary {
+      background: var(--accent);
+      color: white;
     }
-    .btn-primary:hover{
-      box-shadow:0 4px 12px rgba(11,118,239,0.4);
+    .btn-primary:hover {
+      box-shadow: 0 4px 12px rgba(11,118,239,0.4);
       transform: translateY(-2px);
     }
-    .btn-outline{
-      border:1px solid rgba(11,118,239,0.12);
-      background:transparent;
-      color:var(--accent);
+    .btn-outline {
+      border: 1px solid rgba(11,118,239,0.12);
+      background: transparent;
+      color: var(--accent);
     }
-    .btn-outline:hover{
-      background:rgba(11,118,239,0.08);
-      box-shadow:0 3px 10px rgba(11,118,239,0.2);
+    .btn-outline:hover {
+      background: rgba(11,118,239,0.08);
+      box-shadow: 0 3px 10px rgba(11,118,239,0.2);
       transform: translateY(-2px);
     }
-
-    /* Dark mode toggle */
-    .toggle-theme{
-      cursor:pointer;
-      background:transparent;
-      border:none;
-      font-size:20px;
-      line-height:1;
-      padding:8px;
-      border-radius:8px;
-      transition: background 0.2s;
+    .btn-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .toggle-theme:hover{
-      background:rgba(0,0,0,0.06);
+    .chip {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(11,118,239,0.08);
+      border-radius: 999px;
+      margin: 2px;
+      font-size: 0.85rem;
     }
-    body.dark .toggle-theme:hover{
-      background:rgba(255,255,255,0.1);
+    .projects {
+      display: grid;
+      gap: 0.8rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
-
-    /* Grid layout */
-    .grid{
-      display:grid;
-      grid-template-columns:1fr 320px;
-      gap:20px;
-    }
-    @media (max-width:880px){
-      .grid{grid-template-columns:1fr}
-      .hero{flex-direction:column;align-items:flex-start}
-    }
-
-    /* Card */
-    .card{
-      background:var(--card);
-      border-radius:12px;
-      padding:18px;
-      box-shadow:0 6px 18px rgba(36,37,38,0.06);
+    .project {
+      padding: 0.8rem;
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       transition: all 0.3s ease;
     }
-    .card:hover{
+    .project:hover {
       transform: translateY(-3px);
-      box-shadow:0 8px 20px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 18px rgba(11,118,239,0.12);
     }
-    h2{margin:0 0 12px;font-size:18px}
-
-    /* Skills */
-    .skills{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      background:linear-gradient(180deg,#f7fbff,#ffffff);
-      border-radius:999px;
-      padding:8px 12px;
-      font-weight:600;
-      font-size:14px;
-      border:1px solid rgba(11,118,239,0.06);
-      transition: all 0.3s ease;
+    .contact-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
     }
-    body.dark .chip{background:#222;border:1px solid #333;color:#ddd}
-
-    /* Projects */
-    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    @media (max-width:500px){.projects{grid-template-columns:1fr}}
-    .project{
-      padding:12px;
-      border-radius:10px;
-      background:linear-gradient(180deg,#fff,#fafcff);
-      border:1px solid rgba(10,10,10,0.03);
-      transition: all 0.3s ease;
+    .toggle-btn {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 1.2rem;
+      margin-left: 0.5rem;
     }
-    body.dark .project{background:#1c1c1c;border:1px solid #333}
-    .project:hover{
-      transform: translateY(-3px);
-      box-shadow:0 6px 18px rgba(11,118,239,0.12);
-    }
-    .project a{display:inline-block;margin-top:8px;text-decoration:none;font-weight:600;color:var(--accent)}
-
-    /* Timeline */
-    .timeline{display:flex;flex-direction:column;gap:10px}
-    .item{
-      padding:10px;
-      border-radius:8px;
-      background:linear-gradient(180deg,#ffffff,#fbfbff);
-      border:1px solid rgba(0,0,0,0.03);
-      transition: all 0.3s ease;
-    }
-    body.dark .item{background:#1c1c1c;border:1px solid #333}
-    .item:hover{
-      transform: translateY(-2px);
-      box-shadow:0 5px 14px rgba(0,0,0,0.08);
-    }
-    .item .meta{font-size:13px;color:var(--muted);margin-bottom:6px}
-    .item h3{margin:0 0 6px;font-size:15px}
-
-    /* Contact */
-    .contact-list{display:flex;flex-direction:column;gap:8px}
-    .contact-list a{display:inline-block;text-decoration:none;color:var(--accent);font-weight:600}
-
-    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
-
-    /* Print-friendly */
-    @media print{
-      body{padding:0;background:white;color:black}
-      .hero{background:transparent;box-shadow:none}
-      .btn,.toggle-theme{display:none}
-    }
-
-    /* small helpers */
-    .muted{color:var(--muted)}
-    .small{font-size:13px}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="hero">
-      <div class="avatar">
-        <img src="assets/profile.jpg" alt="Profile picture of Mohammad Alipour">
-      </div>
-
-      <div style="flex:1">
+  <main>
+    <!-- Header -->
+    <div class="card header">
+      <img src="assets/profile.png" alt="Profile"/>
+      <div class="header-content">
         <h1>Mohammad Alipour</h1>
-        <p class="muted">Backend Developer — Clean, responsive interfaces & performance-minded</p>
-        <div class="ctas">
-          <a class="btn btn-primary" href="#contact">Contact</a>
-          <a class="btn btn-outline" href="#" onclick="event.preventDefault(); window.print();">Print / Download</a>
-          <button class="toggle-theme" id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+        <p>Backend Developer — Clean, responsive interfaces & performance-minded</p>
+        <a href="mailto:imoalipour@gmail.com" class="btn btn-primary">Contact</a>
+        <a href="javascript:window.print()" class="btn btn-outline">Print / Download</a>
+        <button id="toggle-theme" class="toggle-btn">🌙</button>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="card">
+      <h2>About</h2>
+      <p>
+        Passionate software developer with strong experience in Golang, focusing on software
+        engineering concepts. Skilled in web server design, database modeling, and creating efficient
+        system flows. Interested in concurrency, operating systems fundamentals, and memory
+        management.
+      </p>
+    </div>
+
+    <!-- Projects -->
+    <div class="card">
+      <h2>Projects</h2>
+      <div class="projects">
+        <div class="project">
+          <h3>Portfolio Website</h3>
+          <p>Single-file responsive portfolio with project showcase and contact form (this site).</p>
+          <a href="#" class="btn-outline">Live →</a>
+        </div>
+        <div class="project">
+          <h3>Cafe Menu API</h3>
+          <p>Go + PostgreSQL API for a cafe menu — deployed and monitored.</p>
+          <a href="#" class="btn-outline">Repo →</a>
+        </div>
+        <div class="project">
+          <h3>VPN Sales Dashboard</h3>
+          <p>Lightweight dashboard for daily/monthly income (internal tool).</p>
+          <a href="#" class="btn-outline">Repo →</a>
+        </div>
+        <div class="project">
+          <h3>Other</h3>
+          <p>Open to freelance & team opportunities.</p>
+          <a href="mailto:imoalipour@gmail.com" class="btn-outline">Contact →</a>
         </div>
       </div>
-    </header>
+    </div>
 
-    <main class="grid">
-      <!-- MAIN COLUMN -->
-      <section>
-        <div class="card" style="margin-bottom:14px">
-          <h2>About</h2>
-          <p class="muted small">Passionate software developer with strong experience in Golang, focusing on software engineering concepts. Skilled in web server design, database modeling, and creating efficient system flows. Interested in concurrency, operating systems fundamentals, and memory management</p>
-        </div>
+    <!-- Skills -->
+    <div class="card">
+      <h2>Skills</h2>
+      <div>
+        <span class="chip">Golang</span>
+        <span class="chip">PostgreSQL</span>
+        <span class="chip">SQL</span>
+        <span class="chip">Git</span>
+        <span class="chip">RESTful APIs</span>
+      </div>
+    </div>
 
-        <div class="card" style="margin-bottom:14px">
-          <h2>Projects</h2>
-          <div class="projects">
-            <div class="project">
-              <strong>Portfolio Website</strong>
-              <p class="small muted">Single-file responsive portfolio with project showcase and contact form (this site).</p>
-              <a href="#">Live →</a>
-            </div>
-            <div class="project">
-              <strong>Cafe Menu API</strong>
-              <p class="small muted">Go + PostgreSQL API for a cafe menu — deployed and monitored.</p>
-              <a href="#">Repo →</a>
-            </div>
-            <div class="project">
-              <strong>VPN Sales Dashboard</strong>
-              <p class="small muted">Lightweight dashboard for daily/monthly income (internal tool).</p>
-              <a href="#">Repo →</a>
-            </div>
-            <div class="project">
-              <strong>Other</strong>
-              <p class="small muted">Open to freelance & team opportunities.</p>
-              <a href="#">Contact →</a>
-            </div>
-          </div>
-        </div>
+    <!-- Education -->
+    <div class="card">
+      <h2>Education</h2>
+      <p>Associate Degree in Computer Engineering<br/>University — Tehran</p>
+    </div>
 
-        <div class="card">
-          <h2>Experience</h2>
-          <div class="timeline">
-            <div class="item">
-              <div class="meta">2024 — Present</div>
-              <h3>Front-End Developer — Freelance</h3>
-              <p class="small muted">Worked on multiple small-to-medium projects: landing pages, dashboards, and UIs focused on responsiveness and speed.</p>
-            </div>
-
-            <div class="item">
-              <div class="meta">2022 — 2024</div>
-              <h3>Web Developer — (Your Company)</h3>
-              <p class="small muted">Contributed to back-end integrations, API consumption and front-end optimizations.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SIDEBAR -->
-      <aside>
-        <div class="card" style="margin-bottom:14px">
-          <h2>Skills</h2>
-          <div class="skills">
-            <span class="chip">Golang </span>
-            <span class="chip">PostgreSQL</span>
-            <span class="chip">SQL</span>
-            <span class="chip">Git</span>
-            <span class="chip">RESTful APIs</span>
-          </div>
-        </div>
-
-        <div class="card" style="margin-bottom:14px">
-          <h2>Education</h2>
-          <div class="small muted">Associate Degree in Computer Engineering</div>
-          <div class="meta small muted">University — Tehran</div>
-        </div>
-
-        <div class="card" id="contact">
-          <h2>Contact</h2>
-          <div class="contact-list">
-            <div class="small muted">Email</div>
-            <a href="mailto:imoalipour@gmail.com">imoalipour@gmail.com</a>
-            <div class="small muted">GitHub</div>
-            <a href="https://github.com/mohammad-alipour" target="_blank" rel="noopener">github.com/mohammad-alipour</a>
-            <div class="small muted">LinkedIn</div>
-            <a href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank" rel="noopener">linkedin.com/in/Mohmmadalipour</a>
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <footer>
-      Built with ❤️ — Clean & printable resume template.
-    </footer>
-  </div>
+    <!-- Contact -->
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:imoalipour@gmail.com">imoalipour@gmail.com</a></p>
+      <div class="contact-links">
+        <a href="https://github.com/mohammad-alipour" target="_blank" class="btn btn-outline btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54..."/>
+          </svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/MohammadAlipour" target="_blank" class="btn btn-primary btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M0 1.146C0 .513.526 0 1.175 0h13.65..."/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </main>
 
   <script>
-    // Smooth scroll for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        const href = a.getAttribute('href');
-        if(href === '#') return;
-        e.preventDefault();
-        const el = document.querySelector(href);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      })
-    });
-
-    // Dark mode toggle
-    const toggleBtn = document.getElementById('themeToggle');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const savedTheme = localStorage.getItem('theme');
-
-    if(savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      document.body.classList.add('dark');
-      toggleBtn.textContent = '☀️';
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
-      toggleBtn.textContent = isDark ? '☀️' : '🌙';
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const btn = document.getElementById("toggle-theme");
+    btn.addEventListener("click", () => {
+      const current = document.body.getAttribute("data-theme");
+      if (current === "dark") {
+        document.body.removeAttribute("data-theme");
+        btn.textContent = "🌙";
+      } else {
+        document.body.setAttribute("data-theme", "dark");
+        btn.textContent = "☀️";
+      }
     });
   </script>
 </body>
