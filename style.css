@@ -64,9 +64,26 @@ body.dark .hero{
   box-shadow:0 8px 20px rgba(0,0,0,0.25);
 }
 
+.hero-top-row{
+  display:flex;
+  align-items:center;
+  gap:16px;
+}
 .hero h1{margin:0;font-size:26px;font-weight:800}
 .hero p{margin:6px 0 0;color:var(--muted)}
 .hero .ctas{margin-top:12px;display:flex;gap:10px;align-items:center}
+
+/* Terminal button near name */
+.btn-terminal{
+  background:#123249;
+  color: #cfeefe;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding:6px 10px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+}
+.btn-terminal:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,0.2)}
 
 /* Buttons */
 .btn{
@@ -223,74 +240,112 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
   .btn,.toggle-theme{display:none}
 }
 
-/* --- Terminal Overlay --- */
-#terminalOverlay {
-  position: fixed;
-  top:0; left:0; right:0; bottom:0;
-  background: rgba(0,0,0,0.98);
-  color: #0f0;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
-  display: none;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 40px;
-  z-index: 9999;
-}
-#terminal {
-  width: 100%;
-  max-width: 900px;
-  height: 80vh;
-  overflow-y: auto;
-  border: 2px solid #0f0;
-  padding: 18px;
-  box-sizing: border-box;
-  background: #000;
-  color: #0f0;
-  border-radius: 8px;
-}
-#terminalOutput {
-  white-space: pre-wrap;
-  margin-bottom: 12px;
-  line-height: 1.5;
-  outline: none;
-}
-.input-line {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-top: 8px;
-}
-.prompt {
-  margin-right: 8px;
-  color: #0f0;
-  font-weight: 700;
-}
-#terminalInput {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #0f0;
-  font-family: inherit;
-  font-size: 15px;
-  padding: 8px 10px;
-  box-sizing: border-box;
-}
-#terminalClose {
-  margin-left: 8px;
-  padding: 8px 10px;
-}
-
 /* small helpers */
 .muted{color:var(--muted)}
 .small{font-size:13px}
 
-/* Responsive tweaks */
-@media (max-width:600px){
-  body{padding:18px}
-  .wrap{max-width:100%}
-  .hero{padding:18px}
-  .avatar{width:88px;height:88px;flex:0 0 88px}
-  .grid{gap:14px}
-  #terminal { height: 70vh; padding:14px; }
+/* -------------------
+   Terminal styles
+   ------------------- */
+
+.terminal-overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background: rgba(0,0,0,0.55);
+  z-index:9999;
+  padding:20px;
+}
+
+.terminal-overlay.active{ display:flex; }
+
+/* Desktop: centered narrow terminal */
+.terminal-window{
+  width:800px;
+  max-width:100%;
+  max-height:90vh;
+  background: #0b0f0b;
+  border-radius:12px;
+  border: 3px solid #23ff6b;
+  padding:12px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+  display:flex;
+  flex-direction:column;
+  color: #3aff6a;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* header of terminal */
+.terminal-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:8px;
+}
+.term-title{ font-weight:700; color:#3aff6a }
+.term-dollar{ margin-right:8px; color:#3aff6a }
+
+/* Exit button */
+.terminal-exit{
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border: none;
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.terminal-exit:hover{ background: rgba(255,255,255,0.12) }
+
+/* Screen area */
+.terminal-screen{
+  background: transparent;
+  padding:12px;
+  overflow:auto;
+  flex:1 1 auto;
+  border-radius:8px;
+  white-space:pre-wrap;
+  line-height:1.6;
+}
+
+/* Individual lines */
+.term-line{ margin-bottom:10px; font-size:15px; color:#3aff6a }
+
+/* input row */
+.terminal-input-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+.terminal-input{
+  flex:1;
+  border:none;
+  outline:none;
+  background:transparent;
+  color:#3aff6a;
+  font-family: "Courier New", Courier, monospace;
+  font-size:16px;
+  padding:8px 10px;
+  border-radius:6px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+/* mobile: full screen terminal */
+@media (max-width:700px){
+  .terminal-window{
+    width:100%;
+    height:100%;
+    max-height:100%;
+    border-radius:10px;
+    padding:18px;
+  }
+  .terminal-screen{ font-size:18px }
+  .terminal-exit{
+    position:fixed;
+    right:18px;
+    top:18px;
+    z-index:10001;
+  }
 }

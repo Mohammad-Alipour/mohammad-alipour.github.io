@@ -5,143 +5,109 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if(href === '#') return;
     e.preventDefault();
     const el = document.querySelector(href);
-    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    if(el) el.scrollIntoView({behavior:'smooth'});
   })
 });
 
-// Theme toggle (persist)
+// Theme toggle
 const themeBtn = document.getElementById('themeToggle');
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-if(savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-  document.body.classList.add('dark');
-  if(themeBtn) themeBtn.textContent = '☀️';
-}
-if(themeBtn){
-  themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-    const isDark = document.body.classList.contains('dark');
-    themeBtn.textContent = isDark ? '☀️' : '🌙';
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  });
-}
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
 
-// Terminal Mode
-const terminalToggle = document.getElementById('terminalToggle');
+// Terminal elements
 const overlay = document.getElementById('terminalOverlay');
+const openBtn = document.getElementById('terminalOpen');
+const exitBtn = document.getElementById('terminalExit');
 const input = document.getElementById('terminalInput');
-const output = document.getElementById('terminalOutput');
-const terminalClose = document.getElementById('terminalClose');
+const screen = document.getElementById('terminalScreen');
 
-function printLine(text = '') {
-  // escape and append
-  const safe = String(text).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  output.innerHTML += safe + '\n';
-  output.scrollTop = output.scrollHeight;
+const commands = {
+  help: () => "Available commands: help, about, skills, projects, experience, contact, clear, exit",
+  about: () => "Passionate backend developer working with Golang, databases and performance-oriented systems.\nFocused on server-side design, concurrency and clean engineering.",
+  skills: () => "Golang\nPostgreSQL\nSQL\nRESTful APIs\nGit",
+  projects: () => "Portfolio Website — this site\nCafe Menu API — Go + PostgreSQL\nVPN Sales Dashboard — internal tool",
+  experience: () => "2024 — Present: Front-End Developer — Freelance\n2022 — 2024: Web Developer — (Your Company)",
+  contact: () => "Email: imoalipour@gmail.com\nGitHub: github.com/mohammad-alipour\nLinkedIn: linkedin.com/in/Mohmmadalipour"
+};
+
+function appendLine(text, opts = {}) {
+  const div = document.createElement('div');
+  div.className = 'term-line';
+  div.textContent = text;
+  if (opts.small) div.style.fontSize = '14px';
+  screen.appendChild(div);
+  screen.scrollTop = screen.scrollHeight;
 }
 
-function handleCommand(cmd) {
-  if(!cmd) return;
-  printLine('$ ' + cmd);
-  const lc = cmd.toLowerCase().trim();
-  switch(lc) {
-    case 'help':
-      printLine('Available commands: help, about, skills, projects, experience, contact, clear, exit');
-      break;
-    case 'about':
-      printLine('Passionate backend developer working with Golang, databases and performance-oriented systems.');
-      printLine('Focused on server-side design, concurrency and clean engineering.');
-      break;
-    case 'skills':
-      printLine('Golang\nPostgreSQL\nSQL\nGit\nRESTful APIs\nDocker (familiar)');
-      break;
-    case 'projects':
-      printLine('Portfolio Website — personal site\nCafe Menu API — Go + PostgreSQL\nVPN Sales Dashboard — internal tool\nFreelance projects');
-      break;
-    case 'experience':
-      printLine('2024 — Present: Front-End Developer (Freelance)');
-      printLine('2022 — 2024: Web Developer (Your Company)');
-      break;
-    case 'contact':
-      printLine('Email: imoalipour@gmail.com');
-      printLine('GitHub: https://github.com/mohammad-alipour');
-      printLine('LinkedIn: https://www.linkedin.com/in/Mohmmadalipour');
-      break;
-    case 'clear':
-      output.innerHTML = '';
-      break;
-    case 'exit':
-      closeTerminal();
-      break;
-    default:
-      printLine("Unknown command: '" + cmd + "'. Type 'help' for commands.");
+function runCommand(raw) {
+  const cmd = raw.trim().toLowerCase();
+  if (!cmd) return;
+  if (cmd === 'clear') {
+    screen.innerHTML = '';
+    return;
+  }
+  if (cmd === 'exit') {
+    closeTerminal();
+    return;
+  }
+  if (commands[cmd]) {
+    // print command and output
+    appendLine(`$ ${cmd}`);
+    const out = commands[cmd]();
+    out.split('\n').forEach(line => appendLine(line));
+  } else {
+    appendLine(`$ ${cmd}`);
+    appendLine(`Command not found: ${cmd}. Type 'help' for a list of commands.`);
   }
 }
 
-// open / focus
-function openTerminal(autoDemo = true) {
-  overlay.style.display = 'flex';
+// Open terminal
+function openTerminal() {
+  overlay.classList.add('active');
   overlay.setAttribute('aria-hidden', 'false');
-  output.innerHTML = '';
-  printLine("Welcome to Mohammad Alipour's Interactive Resume (Terminal Mode)");
-  printLine("Type 'help' to see available commands.\n");
-  input.focus();
-  if(autoDemo) {
-    setTimeout(() => autoDemoSequence(), 900);
+  input.value = '';
+  // focus input
+  setTimeout(() => input.focus(), 80);
+  // If screen has only welcome, keep it; else don't duplicate
+  if (!screen.querySelector('.term-welcome')) {
+    appendLine("Welcome to Mohammad Alipour's Interactive Resume (Terminal Mode)");
+    appendLine("Type 'help' to see available commands.");
   }
 }
 
-function closeTerminal(){
-  overlay.style.display = 'none';
+// Close terminal
+function closeTerminal() {
+  overlay.classList.remove('active');
   overlay.setAttribute('aria-hidden', 'true');
-  output.innerHTML = '';
-  input.value = '';
-  terminalToggle.focus();
+  input.blur();
 }
 
-// key handlers
-terminalToggle && terminalToggle.addEventListener('click', () => openTerminal(true));
-terminalClose && terminalClose.addEventListener('click', () => closeTerminal());
+// Attach handlers
+openBtn.addEventListener('click', () => openTerminal());
+exitBtn.addEventListener('click', () => closeTerminal());
 
-document.addEventListener('keydown', (e) => {
-  if(e.key === 'Escape' && overlay.style.display === 'flex') {
+// submit command with Enter
+input.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const val = input.value;
+    runCommand(val);
+    input.value = '';
+  } else if (e.key === 'Escape') {
     closeTerminal();
   }
 });
 
-// handle enter in input
-input && input.addEventListener('keydown', (e) => {
-  if(e.key === 'Enter') {
-    const cmd = input.value.trim();
-    handleCommand(cmd);
-    input.value = '';
-  }
+// allow clicking overlay outside to close (but not when clicking inside terminal)
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay) closeTerminal();
 });
 
-// Auto-typing demo
-function autoDemoSequence() {
-  const demo = ['help','about','skills','projects'];
-  let i = 0;
-  function runNext() {
-    if(i >= demo.length) {
-      printLine('\nDemo finished — you can type a command.');
-      return;
-    }
-    const cmd = demo[i];
-    let j = 0;
-    const typer = setInterval(() => {
-      input.value += cmd[j] || '';
-      j++;
-      if(j > cmd.length) {
-        clearInterval(typer);
-        setTimeout(() => {
-          handleCommand(cmd);
-          input.value = '';
-          i++;
-          setTimeout(runNext, 700);
-        }, 300);
-      }
-    }, 90);
+// Keyboard shortcut: press `Ctrl+~` or `Ctrl+` to open terminal
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey && e.key === '`') || (e.ctrlKey && e.key === '~')) {
+    if (overlay.classList.contains('active')) closeTerminal();
+    else openTerminal();
   }
-  runNext();
-}
+});
