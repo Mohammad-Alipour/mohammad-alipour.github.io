@@ -13,17 +13,6 @@
 </head>
 <body>
   <div class="wrap">
-
-    <!-- Landing Page -->
-    <section class="landing" id="landing">
-      <div class="landing-content">
-        <h1 id="typing"></h1>
-        <p class="subtitle">Backend Developer | Golang | PostgreSQL</p>
-        <button class="enter-btn" id="enterBtn">Enter Resume ↓</button>
-      </div>
-    </section>
-
-    <!-- Resume Hero -->
     <header class="hero">
       <div class="avatar">
         <img src="assets/profile.jpg" alt="Profile picture of Mohammad Alipour">
@@ -32,6 +21,8 @@
       <div style="flex:1">
         <div class="hero-top-row">
           <h1>Mohammad Alipour</h1>
+          <!-- Terminal button moved to the right of the name -->
+          <button class="btn-terminal" id="terminalOpen" aria-label="Open terminal mode">Terminal Mode</button>
         </div>
 
         <p class="muted">Backend Developer — Clean, responsive interfaces & performance-minded</p>
@@ -138,6 +129,28 @@
     <footer>
       Built with ❤️ — Clean & printable resume template.
     </footer>
+  </div>
+
+  <!-- Terminal modal (hidden by default) -->
+  <div id="terminalOverlay" class="terminal-overlay" aria-hidden="true">
+    <div class="terminal-window" role="dialog" aria-label="Interactive terminal">
+      <div class="terminal-header">
+        <div class="term-title"><span class="term-dollar">$</span> Terminal Mode</div>
+        <button id="terminalExit" class="terminal-exit" aria-label="Exit terminal">Exit</button>
+      </div>
+
+      <div id="terminalScreen" class="terminal-screen" tabindex="0" aria-live="polite">
+        <div class="term-line term-welcome">
+Welcome to Mohammad Alipour's Interactive Resume (Terminal Mode)
+Type 'help' to see available commands.
+        </div>
+      </div>
+
+      <div class="terminal-input-row">
+        <span class="term-dollar">$</span>
+        <input id="terminalInput" class="terminal-input" type="text" autocomplete="off" aria-label="Terminal input" />
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
