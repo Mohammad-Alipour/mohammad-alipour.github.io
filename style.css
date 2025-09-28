@@ -33,6 +33,36 @@ body{
   transition: background 0.3s ease, color 0.3s ease;
 }
 .wrap{width:100%;max-width:980px}
+.hidden{display:none}
+
+/* Landing Page */
+.landing{
+  position:fixed;
+  inset:0;
+  background:linear-gradient(135deg,#0b76ef,#123249);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+  transition:opacity 0.6s ease, visibility 0.6s ease;
+}
+.landing-content{
+  text-align:center;
+  color:white;
+  animation: fadeIn 1s ease forwards;
+}
+.landing h1{font-size:48px;margin:0 0 12px}
+.landing p{margin:0 0 24px;font-size:18px;color:#dce9ff}
+
+.landing.fade-out{
+  opacity:0;
+  visibility:hidden;
+}
+
+@keyframes fadeIn {
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
 
 /* Header / Hero */
 .hero{
@@ -73,18 +103,6 @@ body.dark .hero{
 .hero p{margin:6px 0 0;color:var(--muted)}
 .hero .ctas{margin-top:12px;display:flex;gap:10px;align-items:center}
 
-/* Terminal button near name */
-.btn-terminal{
-  background:#123249;
-  color: #cfeefe;
-  border: 1px solid rgba(255,255,255,0.04);
-  padding:6px 10px;
-  border-radius:8px;
-  font-weight:600;
-  cursor:pointer;
-}
-.btn-terminal:hover{transform:translateY(-2px);box-shadow:0 6px 14px rgba(0,0,0,0.2)}
-
 /* Buttons */
 .btn{
   display:inline-block;
@@ -93,6 +111,7 @@ body.dark .hero{
   text-decoration:none;
   font-weight:600;
   transition: all 0.25s ease;
+  cursor:pointer;
 }
 .btn-primary{
   background:var(--accent);
@@ -243,109 +262,3 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
 /* small helpers */
 .muted{color:var(--muted)}
 .small{font-size:13px}
-
-/* -------------------
-   Terminal styles
-   ------------------- */
-
-.terminal-overlay{
-  position:fixed;
-  inset:0;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  background: rgba(0,0,0,0.55);
-  z-index:9999;
-  padding:20px;
-}
-
-.terminal-overlay.active{ display:flex; }
-
-/* Desktop: centered narrow terminal */
-.terminal-window{
-  width:800px;
-  max-width:100%;
-  max-height:90vh;
-  background: #0b0f0b;
-  border-radius:12px;
-  border: 3px solid #0b76ef;
-  padding:12px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-  display:flex;
-  flex-direction:column;
-  color: #0b76ef;
-  font-family: "Courier New", Courier, monospace;
-}
-
-/* header of terminal */
-.terminal-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:8px;
-}
-.term-title{ font-weight:700; color:#0b76ef }
-.term-dollar{ margin-right:8px; color:#0b76ef }
-
-/* Exit button */
-.terminal-exit{
-  background: rgba(255,255,255,0.06);
-  color: #fff;
-  border: none;
-  padding:6px 10px;
-  border-radius:8px;
-  cursor:pointer;
-}
-.terminal-exit:hover{ background: rgba(255,255,255,0.12) }
-
-/* Screen area */
-.terminal-screen{
-  background: transparent;
-  padding:12px;
-  overflow:auto;
-  flex:1 1 auto;
-  border-radius:8px;
-  white-space:pre-wrap;
-  line-height:1.6;
-}
-
-/* Individual lines */
-.term-line{ margin-bottom:10px; font-size:15px; color:#0b76ef }
-
-/* input row */
-.terminal-input-row{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  margin-top:8px;
-}
-.terminal-input{
-  flex:1;
-  border:none;
-  outline:none;
-  background:transparent;
-  color:#0b76ef;
-  font-family: "Courier New", Courier, monospace;
-  font-size:16px;
-  padding:8px 10px;
-  border-radius:6px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
-}
-
-/* mobile: full screen terminal */
-@media (max-width:700px){
-  .terminal-window{
-    width:100%;
-    height:100%;
-    max-height:100%;
-    border-radius:10px;
-    padding:18px;
-  }
-  .terminal-screen{ font-size:18px }
-  .terminal-exit{
-    position:fixed;
-    right:18px;
-    top:18px;
-    z-index:10001;
-  }
-}
