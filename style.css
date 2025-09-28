@@ -223,6 +223,74 @@ footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
   .btn,.toggle-theme{display:none}
 }
 
+/* --- Terminal Overlay --- */
+#terminalOverlay {
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,0.98);
+  color: #0f0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace;
+  display: none;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px;
+  z-index: 9999;
+}
+#terminal {
+  width: 100%;
+  max-width: 900px;
+  height: 80vh;
+  overflow-y: auto;
+  border: 2px solid #0f0;
+  padding: 18px;
+  box-sizing: border-box;
+  background: #000;
+  color: #0f0;
+  border-radius: 8px;
+}
+#terminalOutput {
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  outline: none;
+}
+.input-line {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 8px;
+}
+.prompt {
+  margin-right: 8px;
+  color: #0f0;
+  font-weight: 700;
+}
+#terminalInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #0f0;
+  font-family: inherit;
+  font-size: 15px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+}
+#terminalClose {
+  margin-left: 8px;
+  padding: 8px 10px;
+}
+
 /* small helpers */
 .muted{color:var(--muted)}
 .small{font-size:13px}
+
+/* Responsive tweaks */
+@media (max-width:600px){
+  body{padding:18px}
+  .wrap{max-width:100%}
+  .hero{padding:18px}
+  .avatar{width:88px;height:88px;flex:0 0 88px}
+  .grid{gap:14px}
+  #terminal { height: 70vh; padding:14px; }
+}
