@@ -39,13 +39,14 @@ body{
 .landing {
   position: fixed;
   inset: 0;
+  background: linear-gradient(90deg, rgba(11,118,239,0.08), rgba(11,118,239,0.02));
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  z-index: 999;
-  transition: opacity 0.6s ease;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
+
 
 .landing.fade-out {
   opacity: 0;
