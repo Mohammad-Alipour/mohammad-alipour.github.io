@@ -35,58 +35,68 @@ body{
 .wrap{width:100%;max-width:980px}
 .hidden{display:none}
 
-/* Landing Page */
-.landing{
-  position:fixed;
-  inset:0;
-  background: linear-gradient(270deg, #0b76ef, #123249, #0b76ef);
-  background-size: 600% 600%;
-  animation: gradientShift 10s ease infinite;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  transition:opacity 0.6s ease, visibility 0.6s ease;
+/* Landing Page - Minimal style */
+.landing {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  z-index: 999;
+  transition: opacity 0.6s ease;
 }
 
-.landing-overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.35);
-  backdrop-filter: blur(6px);
+.landing.fade-out {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.glass-card{
-  position:relative;
-  background:rgba(255,255,255,0.1);
-  border-radius:16px;
-  padding:40px 60px;
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-  box-shadow:0 8px 30px rgba(0,0,0,0.3);
-  text-align:center;
-  color:#fff;
-  animation: fadeIn 1s ease forwards;
+.landing-content {
+  text-align: center;
+  color: #fff;
 }
 
-.glass-card h1{font-size:52px;margin:0 0 16px;font-weight:800}
-.glass-card p{margin:0 0 28px;font-size:20px;color:#e2ebff}
-
-@keyframes gradientShift {
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+.landing-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid rgba(255,255,255,0.2);
 }
 
-.landing.fade-out{
-  opacity:0;
-  visibility:hidden;
+.landing h1 {
+  font-size: 2rem;
+  margin: 0 0 10px;
+  font-weight: 700;
 }
 
-@keyframes fadeIn {
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+.landing .subtitle {
+  font-size: 1rem;
+  color: #d1d5db;
+  margin-bottom: 20px;
 }
+
+.landing .btn {
+  margin-bottom: 25px;
+}
+
+.landing .socials {
+  margin-top: 10px;
+}
+
+.landing .socials a {
+  color: #d1d5db;
+  margin: 0 8px;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+.landing .socials a:hover {
+  color: #fff;
+}
+
 
 /* Header / Hero */
 .hero{
