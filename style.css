@@ -1,78 +1,85 @@
-/* Landing Page */
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #fff;
+  background: #000; /* fallback */
+}
+
+/* Landing container */
 .landing {
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(11,118,239,0.08), rgba(11,118,239,0.02));
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
-}
-
-.landing-content {
+  align-items: center;
   text-align: center;
-  color: white;
-  animation: fadeIn 1s ease forwards;
+  padding: 2rem;
+  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
 }
 
+/* Profile image */
 .landing img {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  margin-bottom: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  object-fit: cover;
+  border: 3px solid #fff;
+  margin-bottom: 1.5rem;
 }
 
+/* Title */
 .landing h1 {
-  font-size: 36px;
-  margin: 0 0 12px;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
+.landing h1 span {
+  font-size: 1.8rem;
+}
+
+/* Subtitle */
 .landing p {
-  margin: 0 0 20px;
-  font-size: 16px;
-  color: #dce9ff;
+  font-size: 1rem;
+  color: #ccc;
+  margin-bottom: 1.5rem;
 }
 
+/* Button */
 .landing .btn {
-  padding: 10px 20px;
-  border-radius: 10px;
-  background: #0b76ef;
+  background: #007bff;
   color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background 0.25s ease;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-bottom: 1.5rem;
 }
 
 .landing .btn:hover {
-  background: #095dc0;
+  background: #0056b3;
 }
 
+/* Social icons */
 .landing .socials {
-  margin-top: 20px;
   display: flex;
-  gap: 14px;
+  gap: 1.2rem;
   justify-content: center;
 }
 
 .landing .socials a {
-  color: #dce9ff;
-  font-size: 20px;
-  transition: color 0.3s;
+  color: #fff;
+  font-size: 1.3rem;
+  transition: 0.3s;
 }
 
 .landing .socials a:hover {
-  color: #fff;
-}
-
-.landing.fade-out {
-  opacity: 0;
-  visibility: hidden;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px)}
-  to {opacity: 1; transform: translateY(0)}
+  color: #007bff;
 }
