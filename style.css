@@ -1,4 +1,4 @@
-/* Global reset */
+/*  Base Styles  */
 * {
   margin: 0;
   padding: 0;
@@ -7,79 +7,259 @@
 
 body {
   font-family: "Inter", sans-serif;
-  color: #fff;
-  background: #000; /* fallback */
+  background: #f9f9f9;
+  color: #222;
+  line-height: 1.6;
 }
 
-/* Landing container */
+/*  Landing Page  */
 .landing {
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 2rem;
-  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+  color: #fff;
+  z-index: 1000;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
 }
 
-/* Profile image */
-.landing img {
+.landing.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.landing-avatar {
   width: 120px;
   height: 120px;
   border-radius: 50%;
+  margin-bottom: 1.2rem;
   border: 3px solid #fff;
-  margin-bottom: 1.5rem;
 }
 
-/* Title */
 .landing h1 {
   font-size: 2rem;
-  font-weight: 700;
   margin-bottom: 0.5rem;
 }
 
-.landing h1 span {
-  font-size: 1.8rem;
-}
-
-/* Subtitle */
-.landing p {
-  font-size: 1rem;
-  color: #ccc;
+.landing .subtitle {
+  font-size: 1.1rem;
   margin-bottom: 1.5rem;
-}
-
-/* Button */
-.landing .btn {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: 0.3s;
-  margin-bottom: 1.5rem;
-}
-
-.landing .btn:hover {
-  background: #0056b3;
-}
-
-/* Social icons */
-.landing .socials {
-  display: flex;
-  gap: 1.2rem;
-  justify-content: center;
+  opacity: 0.9;
 }
 
 .landing .socials a {
-  color: #fff;
+  margin: 0 0.5rem;
   font-size: 1.3rem;
-  transition: 0.3s;
+  color: #fff;
+  transition: color 0.3s ease;
 }
 
 .landing .socials a:hover {
-  color: #007bff;
+  color: #fdbb2d;
+}
+
+/*  Buttons  */
+.btn {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background: #1a2a6c;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #b21f1f;
+}
+
+.btn-outline {
+  border: 2px solid #1a2a6c;
+  background: transparent;
+  color: #1a2a6c;
+}
+
+.btn-outline:hover {
+  background: #1a2a6c;
+  color: #fff;
+}
+
+/*  Resume Layout  */
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.hero .avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid #1a2a6c;
+}
+
+.hero h1 {
+  font-size: 1.8rem;
+}
+
+.muted {
+  color: #666;
+}
+
+.ctas {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+/*  Grid Layout  */
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*  Cards  */
+.card {
+  background: #fff;
+  padding: 1.2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: #1a2a6c;
+}
+
+/*  Chips (Skills)  */
+.chip {
+  display: inline-block;
+  background: #eee;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin: 0.2rem;
+  transition: all 0.3s ease;
+}
+
+.chip:hover {
+  background: #1a2a6c;
+  color: #fff;
+}
+
+/*  Timeline  */
+.timeline .item {
+  margin-bottom: 1.2rem;
+}
+
+.timeline .meta {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.3rem;
+}
+
+.timeline h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+
+/*  Contact Section  */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.contact-btn.email {
+  background: #f1f1f1;
+  color: #333;
+}
+
+.contact-btn.github {
+  background: #333;
+  color: #fff;
+}
+
+.contact-btn.linkedin {
+  background: #0a66c2;
+  color: #fff;
+}
+
+.contact-btn:hover {
+  opacity: 0.85;
+}
+
+/*  Footer  */
+footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/*  Dark Mode  */
+body.dark {
+  background: #121212;
+  color: #eee;
+}
+
+body.dark .card {
+  background: #1e1e1e;
+}
+
+body.dark .chip {
+  background: #333;
+  color: #eee;
+}
+
+body.dark .chip:hover {
+  background: #fdbb2d;
+  color: #222;
+}
+
+body.dark footer {
+  color: #aaa;
 }
