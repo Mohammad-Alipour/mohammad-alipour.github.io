@@ -26,6 +26,6 @@ enterBtn.addEventListener('click', () => {
   setTimeout(() => {
     landing.style.display = 'none';
     resumeWrap.classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' }); 
   }, 600); // match CSS transition
 });
