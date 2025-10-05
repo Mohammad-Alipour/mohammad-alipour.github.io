@@ -24,7 +24,21 @@ else applyTheme(prefersDark.matches);
 prefersDark.addEventListener('change', e => applyTheme(e.matches));
 if (themeBtn) themeBtn.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')));
 
-// Landing transition with cinematic blur
+// Typing effect for landing subtitle
+const typeText = document.getElementById("typeText");
+const text = "Backend Developer — Golang & System Design";
+let idx = 0;
+
+function type() {
+  if (idx < text.length) {
+    typeText.textContent += text.charAt(idx);
+    idx++;
+    setTimeout(type, 80);
+  }
+}
+if (typeText) type();
+
+// Landing transition
 const landing = document.getElementById('landing');
 const enterBtn = document.getElementById('enterBtn');
 const resumeWrap = document.querySelector('.wrap');
@@ -32,34 +46,16 @@ const resumeWrap = document.querySelector('.wrap');
 if (enterBtn) {
   enterBtn.addEventListener('click', () => {
     if (landing.classList.contains('fade-out')) return;
-
-    // Add smooth blur + fade
-    landing.style.transition = 'opacity 1.2s ease, transform 1.2s ease, filter 1.2s ease';
-    landing.style.transform = 'scale(1)';
-    landing.style.filter = 'blur(0px)';
     landing.classList.add('fade-out');
-
-    // Fade-out animation
-    landing.style.opacity = '0';
-    landing.style.transform = 'scale(1.05)';
-    landing.style.filter = 'blur(8px)';
-
-    // Then show resume
     setTimeout(() => {
       landing.style.display = 'none';
       resumeWrap.classList.remove('hidden');
       resumeWrap.style.opacity = 0;
-      resumeWrap.style.transform = 'translateY(30px)';
-      resumeWrap.style.filter = 'blur(6px)';
       document.body.classList.remove('landing-active');
-
-      // Resume fade-in animation
-      resumeWrap.style.transition = 'opacity 1s ease, transform 1s ease, filter 1s ease';
       requestAnimationFrame(() => {
+        resumeWrap.style.transition = 'opacity 0.8s ease';
         resumeWrap.style.opacity = 1;
-        resumeWrap.style.transform = 'translateY(0)';
-        resumeWrap.style.filter = 'blur(0px)';
       });
-    }, 1000);
+    }, 700);
   });
 }
