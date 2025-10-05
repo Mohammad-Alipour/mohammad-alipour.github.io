@@ -17,13 +17,26 @@ function applyTheme(isDark) {
   localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
-// Load from localStorage or system preference
 const saved = localStorage.getItem('theme');
 if (saved) applyTheme(saved === 'dark');
 else applyTheme(prefersDark.matches);
 
 prefersDark.addEventListener('change', e => applyTheme(e.matches));
 if (themeBtn) themeBtn.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')));
+
+// Typing effect for landing subtitle
+const typeText = document.getElementById("typeText");
+const text = "Backend Developer — Golang & System Design";
+let idx = 0;
+
+function type() {
+  if (idx < text.length) {
+    typeText.textContent += text.charAt(idx);
+    idx++;
+    setTimeout(type, 80);
+  }
+}
+if (typeText) type();
 
 // Landing transition
 const landing = document.getElementById('landing');
@@ -40,9 +53,9 @@ if (enterBtn) {
       resumeWrap.style.opacity = 0;
       document.body.classList.remove('landing-active');
       requestAnimationFrame(() => {
-        resumeWrap.style.transition = 'opacity 0.6s ease';
+        resumeWrap.style.transition = 'opacity 0.8s ease';
         resumeWrap.style.opacity = 1;
       });
-    }, 600);
+    }, 700);
   });
 }

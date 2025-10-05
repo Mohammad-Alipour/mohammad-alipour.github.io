@@ -48,6 +48,7 @@ body:not(.landing-active) {
 }
 .hidden { display: none; }
 
+/* LANDING PAGE */
 .landing {
   position: fixed;
   inset: 0;
@@ -82,12 +83,32 @@ body:not(.landing-active) {
   margin: 0 0 10px;
   font-weight: 800;
 }
+
 .landing p {
   margin: 0 0 24px;
   font-size: 18px;
   color: #dce9ff;
 }
 
+/* Typing Effect */
+.typing-text {
+  font-size: 18px;
+  color: #dce9ff;
+  min-height: 24px;
+  font-family: monospace;
+  border-right: 3px solid #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  width: fit-content;
+  margin: 0 auto 24px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Socials */
 .socials {
   display: flex;
   justify-content: center;
@@ -104,6 +125,49 @@ body:not(.landing-active) {
   color: var(--accent);
 }
 
+/* Enter Button */
+.enter-btn {
+  background: linear-gradient(135deg, #0b76ef, #004a99);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 0 16px rgba(11,118,239,0.6);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 26px rgba(11,118,239,0.9);
+}
+
+/* Ripple effect */
+.enter-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.8s;
+}
+.enter-btn:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* Landing Fade Out */
 .landing.fade-out {
   opacity: 0;
   visibility: hidden;
