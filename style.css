@@ -17,6 +17,7 @@ body.dark {
   color: #f5f5f5;
 }
 
+/* GENERAL RESETS */
 * { box-sizing: border-box; }
 html, body { height: 100%; }
 
@@ -47,6 +48,7 @@ body:not(.landing-active) {
 }
 .hidden { display: none; }
 
+/* LANDING PAGE */
 .landing {
   position: fixed;
   inset: 0;
@@ -81,12 +83,32 @@ body:not(.landing-active) {
   margin: 0 0 10px;
   font-weight: 800;
 }
+
 .landing p {
   margin: 0 0 24px;
   font-size: 18px;
   color: #dce9ff;
 }
 
+/* Typing Effect */
+.typing-text {
+  font-size: 18px;
+  color: #dce9ff;
+  min-height: 24px;
+  font-family: monospace;
+  border-right: 3px solid #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  width: fit-content;
+  margin: 0 auto 24px;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+/* Socials */
 .socials {
   display: flex;
   justify-content: center;
@@ -103,6 +125,49 @@ body:not(.landing-active) {
   color: var(--accent);
 }
 
+/* Enter Button */
+.enter-btn {
+  background: linear-gradient(135deg, #0b76ef, #004a99);
+  color: #fff;
+  font-weight: 700;
+  padding: 12px 26px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  box-shadow: 0 0 16px rgba(11,118,239,0.6);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 26px rgba(11,118,239,0.9);
+}
+
+/* Ripple effect */
+.enter-btn::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.8s;
+}
+.enter-btn:active::after {
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+  transition: 0s;
+}
+
+/* Landing Fade Out */
 .landing.fade-out {
   opacity: 0;
   visibility: hidden;
@@ -117,6 +182,7 @@ body:not(.landing-active) {
   to { opacity: 1; }
 }
 
+/* HERO / HEADER */
 .hero {
   background: linear-gradient(90deg, rgba(11,118,239,0.08), rgba(11,118,239,0.02));
   border-radius: var(--radius);
@@ -163,6 +229,7 @@ body.dark .hero {
 .hero p { margin: 6px 0 0; color: var(--muted); }
 .hero .ctas { margin-top: 12px; display: flex; gap: 10px; align-items: center; }
 
+/* BUTTONS */
 .btn {
   display: inline-block;
   padding: 10px 14px;
@@ -192,6 +259,7 @@ body.dark .hero {
   transform: translateY(-2px);
 }
 
+/* THEME TOGGLE */
 .toggle-theme {
   cursor: pointer;
   background: transparent;
@@ -209,6 +277,7 @@ body.dark .toggle-theme:hover {
   background: rgba(255,255,255,0.1);
 }
 
+/* GRID LAYOUT */
 .grid {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -219,6 +288,7 @@ body.dark .toggle-theme:hover {
   .hero { flex-direction: column; align-items: flex-start; }
 }
 
+/* CARD */
 .card {
   background: var(--card);
   border-radius: 12px;
@@ -232,6 +302,7 @@ body.dark .toggle-theme:hover {
 }
 h2 { margin: 0 0 12px; font-size: 18px; }
 
+/* SKILLS */
 .skills { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
   background: linear-gradient(180deg, #f7fbff, #ffffff);
@@ -244,6 +315,7 @@ h2 { margin: 0 0 12px; font-size: 18px; }
 }
 body.dark .chip { background: #222; border: 1px solid #333; color: #ddd; }
 
+/* PROJECTS */
 .projects { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
 @media (max-width: 500px) { .projects { grid-template-columns: 1fr; } }
 .project {
@@ -266,6 +338,7 @@ body.dark .project { background: #1c1c1c; border: 1px solid #333; }
   color: var(--accent);
 }
 
+/* TIMELINE / EXPERIENCE */
 .item {
   padding: 10px;
   border-radius: 8px;
@@ -281,6 +354,7 @@ body.dark .item { background: #1c1c1c; border: 1px solid #333; }
 .item .meta { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
 .item h3 { margin: 0 0 6px; font-size: 15px; }
 
+/* CONTACT */
 .contact-list { display: flex; flex-direction: column; gap: 10px; }
 .contact-btn {
   display: flex;
@@ -301,6 +375,7 @@ body.dark .item { background: #1c1c1c; border: 1px solid #333; }
 .contact-btn.github { background: #2d333b; color: #fff; }
 .contact-btn.linkedin { background: #0b76ef; color: #fff; }
 
+/* FOOTER */
 footer {
   margin-top: 18px;
   color: var(--muted);
@@ -308,13 +383,60 @@ footer {
   text-align: center;
 }
 
+/* PRINT-FRIENDLY */
 @media print {
   body { padding: 0; background: white; color: black; }
   .hero { background: transparent; box-shadow: none; }
   .btn, .toggle-theme { display: none; }
 }
 
+/* SMALL HELPERS */
 .muted { color: var(--muted); }
 .small { font-size: 13px; }
 
+/*  MOBILE OPTIMIZATION  */
+@media (max-width: 768px) {
+  body.landing-active {
+    padding: 0;
+  }
 
+  .landing-avatar {
+    width: 90px;
+    height: 90px;
+    margin-bottom: 16px;
+  }
+
+  .landing h1 {
+    font-size: 28px;
+  }
+
+  .landing p {
+    font-size: 15px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+  }
+
+  .socials {
+    gap: 14px;
+    margin: 12px 0;
+  }
+
+  .socials a {
+    font-size: 20px;
+  }
+
+  #enterBtn {
+    font-size: 15px;
+    padding: 9px 18px;
+    border-radius: 8px;
+  }
+
+  .landing-content {
+    transform: scale(0.95);
+    padding: 0 20px;
+  }
+
+  html, body {
+    overflow-x: hidden;
+  }
+}
