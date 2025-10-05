@@ -317,7 +317,7 @@ footer {
 .muted { color: var(--muted); }
 .small { font-size: 13px; }
 
-/* MOBILE OPTIMIZATION
+/* MOBILE OPTIMIZATION */
 @media (max-width: 768px) {
   body.landing-active {
     padding: 0;
