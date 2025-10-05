@@ -1,32 +1,48 @@
-// Smooth scroll for internal links
-document.querySelectorAll('a[href^="#"]').forEach(a => {
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
   a.addEventListener('click', e => {
-    const href = a.getAttribute('href');
-    if (href === '#') return;
     e.preventDefault();
-    const el = document.querySelector(href);
+    const el = document.querySelector(a.getAttribute('href'));
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-// Theme toggle
+// Theme toggle with auto detection
 const themeBtn = document.getElementById('themeToggle');
-themeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-  themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
-});
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-// Landing page logic
+function applyTheme(isDark) {
+  document.body.classList.toggle('dark', isDark);
+  if (themeBtn) themeBtn.textContent = isDark ? '☀️' : '🌙';
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Load from localStorage or system preference
+const saved = localStorage.getItem('theme');
+if (saved) applyTheme(saved === 'dark');
+else applyTheme(prefersDark.matches);
+
+prefersDark.addEventListener('change', e => applyTheme(e.matches));
+if (themeBtn) themeBtn.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')));
+
+// Landing transition
 const landing = document.getElementById('landing');
 const enterBtn = document.getElementById('enterBtn');
 const resumeWrap = document.querySelector('.wrap');
 
-enterBtn.addEventListener('click', () => {
-  landing.classList.add('fade-out');
-  setTimeout(() => {
-    landing.style.display = 'none';
-    resumeWrap.classList.remove('hidden');
-    document.body.classList.remove('landing-active'); // fix layout reset
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, 600);
-});
+if (enterBtn) {
+  enterBtn.addEventListener('click', () => {
+    if (landing.classList.contains('fade-out')) return;
+    landing.classList.add('fade-out');
+    setTimeout(() => {
+      landing.style.display = 'none';
+      resumeWrap.classList.remove('hidden');
+      resumeWrap.style.opacity = 0;
+      document.body.classList.remove('landing-active');
+      requestAnimationFrame(() => {
+        resumeWrap.style.transition = 'opacity 0.6s ease';
+        resumeWrap.style.opacity = 1;
+      });
+    }, 600);
+  });
+}
