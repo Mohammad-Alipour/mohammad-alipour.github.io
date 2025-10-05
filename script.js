@@ -2,11 +2,11 @@
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const href = a.getAttribute('href');
-    if(href === '#') return;
+    if (href === '#') return;
     e.preventDefault();
     const el = document.querySelector(href);
-    if(el) el.scrollIntoView({behavior:'smooth'});
-  })
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  });
 });
 
 // Theme toggle
@@ -26,6 +26,7 @@ enterBtn.addEventListener('click', () => {
   setTimeout(() => {
     landing.style.display = 'none';
     resumeWrap.classList.remove('hidden');
-    window.scrollTo({ top: 0, behavior: 'smooth' }); 
-  }, 600); // match CSS transition
+    document.body.classList.remove('landing-active'); // fix layout reset
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 600);
 });
