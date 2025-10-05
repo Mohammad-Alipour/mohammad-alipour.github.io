@@ -317,49 +317,4 @@ footer {
 .muted { color: var(--muted); }
 .small { font-size: 13px; }
 
-/* MOBILE OPTIMIZATION */
-@media (max-width: 768px) {
-  body.landing-active {
-    padding: 0;
-  }
 
-  .landing-avatar {
-    width: 90px;
-    height: 90px;
-    margin-bottom: 16px;
-  }
-
-  .landing h1 {
-    font-size: 28px;
-  }
-
-  .landing p {
-    font-size: 15px;
-    line-height: 1.4;
-    margin-bottom: 20px;
-  }
-
-  .socials {
-    gap: 14px;
-    margin: 12px 0;
-  }
-
-  .socials a {
-    font-size: 20px;
-  }
-
-  #enterBtn {
-    font-size: 15px;
-    padding: 9px 18px;
-    border-radius: 8px;
-  }
-
-  .landing-content {
-    transform: scale(0.95);
-    padding: 0 20px;
-  }
-
-  html, body {
-    overflow-x: hidden;
-  }
-}
