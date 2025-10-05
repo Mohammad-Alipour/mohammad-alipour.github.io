@@ -5,35 +5,25 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mohammad Alipour — Resume</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <meta name="description" content="Resume / personal site of Mohammad Alipour — backend developer specializing in Golang." />
+  <meta name="description" content="Resume / personal site of Mohammad Alipour — back-end, clean and professional." />
   <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="assets/profile.jpg" />
-
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="landing-active">
-
   <!-- Landing Page -->
   <div id="landing" class="landing active">
     <div class="landing-content">
-      <img src="assets/profile.jpg" alt="Mohammad Alipour" class="landing-avatar">
-      <h1>Mohammad Alipour</h1>
-      <p>Backend Developer — Golang & System Design</p>
+      <h1>Welcome</h1>
+      <p class="typing-line">
+        <span id="typed-text"></span><span class="cursor">|</span>
+      </p>
+      <button id="enterBtn" class="btn-enter">Enter Resume</button>
 
       <div class="socials">
-        <a href="https://github.com/mohammad-alipour" target="_blank" aria-label="GitHub">
-          <i class="fa-brands fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank" aria-label="LinkedIn">
-          <i class="fa-brands fa-linkedin"></i>
-        </a>
-        <a href="mailto:imoalipour@gmail.com" aria-label="Email">
-          <i class="fa-solid fa-envelope"></i>
-        </a>
+        <a href="https://github.com/mohammad-alipour" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+        <a href="mailto:imoalipour@gmail.com"><i class="fa-solid fa-envelope"></i></a>
       </div>
-
-      <button id="enterBtn" class="btn btn-primary">Enter Resume</button>
     </div>
   </div>
 
@@ -59,7 +49,6 @@
     </header>
 
     <main class="grid">
-      <!-- MAIN COLUMN -->
       <section>
         <div class="card" style="margin-bottom:14px">
           <h2>About</h2>
@@ -82,9 +71,14 @@
               <a href="https://github.com/Mohammad-Alipour/menu-api">Repo →</a>
             </div>
             <div class="project">
-              <strong>Task CLI</strong>
+              <strong>Task Cli</strong>
               <p class="small muted">A lightweight CLI tool to manage tasks using Go.</p>
               <a href="https://github.com/Mohammad-Alipour/task-cli">Repo →</a>
+            </div>
+            <div class="project">
+              <strong>Other</strong>
+              <p class="small muted">Open to freelance & team opportunities.</p>
+              <a href="#contact">Contact →</a>
             </div>
           </div>
         </div>
@@ -99,18 +93,17 @@
         </div>
       </section>
 
-      <!-- SIDEBAR -->
       <aside>
         <div class="card" style="margin-bottom:14px">
           <h2>Skills</h2>
           <div class="skills">
             <span class="chip">Golang</span>
             <span class="chip">PostgreSQL</span>
-            <span class="chip">Docker</span>
+            <span class="chip">SQL</span>
             <span class="chip">Git</span>
             <span class="chip">RESTful APIs</span>
-            <span class="chip">SQL</span>
-            <span class="chip">OOP & Concurrency</span>
+            <span class="chip">Docker</span>
+            <span class="chip">OOP & Concurrency Concepts</span>
           </div>
         </div>
 

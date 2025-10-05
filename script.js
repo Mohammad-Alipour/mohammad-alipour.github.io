@@ -1,48 +1,51 @@
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
+// Smooth scroll for internal links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
     e.preventDefault();
-    const el = document.querySelector(a.getAttribute('href'));
+    const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-// Theme toggle with auto detection
-const themeBtn = document.getElementById('themeToggle');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
-
-function applyTheme(isDark) {
-  document.body.classList.toggle('dark', isDark);
-  if (themeBtn) themeBtn.textContent = isDark ? '☀️' : '🌙';
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+// Auto dark mode detection for landing
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  document.body.classList.add('dark');
 }
 
-// Load from localStorage or system preference
-const saved = localStorage.getItem('theme');
-if (saved) applyTheme(saved === 'dark');
-else applyTheme(prefersDark.matches);
+// Typing effect on landing
+const text = "Backend Developer — Golang & System Design";
+const typedText = document.getElementById('typed-text');
+let i = 0;
 
-prefersDark.addEventListener('change', e => applyTheme(e.matches));
-if (themeBtn) themeBtn.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')));
+function typeWriter() {
+  if (i < text.length) {
+    typedText.textContent += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 80);
+  }
+}
+window.addEventListener('load', typeWriter);
 
-// Landing transition
+//  Theme toggle for main page 
+const themeBtn = document.getElementById('themeToggle');
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  themeBtn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+});
+
+//  Landing transition 
 const landing = document.getElementById('landing');
 const enterBtn = document.getElementById('enterBtn');
 const resumeWrap = document.querySelector('.wrap');
 
-if (enterBtn) {
-  enterBtn.addEventListener('click', () => {
-    if (landing.classList.contains('fade-out')) return;
-    landing.classList.add('fade-out');
-    setTimeout(() => {
-      landing.style.display = 'none';
-      resumeWrap.classList.remove('hidden');
-      resumeWrap.style.opacity = 0;
-      document.body.classList.remove('landing-active');
-      requestAnimationFrame(() => {
-        resumeWrap.style.transition = 'opacity 0.6s ease';
-        resumeWrap.style.opacity = 1;
-      });
-    }, 600);
-  });
-}
+enterBtn.addEventListener('click', () => {
+  landing.classList.add('fade-out');
+  setTimeout(() => {
+    landing.style.display = 'none';
+    resumeWrap.classList.remove('hidden');
+    document.body.classList.remove('landing-active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 600);
+});
