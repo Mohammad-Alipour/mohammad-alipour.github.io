@@ -8,6 +8,8 @@
   <meta name="description" content="Resume / personal site of Mohammad Alipour — backend developer specializing in Golang." />
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/profile.jpg" />
+
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="landing-active">
@@ -18,21 +20,35 @@
       <img src="assets/profile.jpg" alt="Mohammad Alipour" class="landing-avatar">
       <h1>Mohammad Alipour</h1>
       <p id="typeText" class="typing-text"></p>
+
       <div class="socials">
-        <a href="https://github.com/mohammad-alipour" target="_blank"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-        <a href="mailto:imoalipour@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://github.com/mohammad-alipour" target="_blank" aria-label="GitHub">
+          <i class="fa-brands fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+        <a href="mailto:imoalipour@gmail.com" aria-label="Email">
+          <i class="fa-solid fa-envelope"></i>
+        </a>
       </div>
+
       <button id="enterBtn" class="btn enter-btn">Enter Resume</button>
     </div>
   </div>
 
-  <!-- Resume -->
+  <!-- Resume Content -->
   <div class="wrap hidden">
     <header class="hero">
-      <div class="avatar"><img src="assets/profile.jpg" alt="Profile picture of Mohammad Alipour"></div>
+      <div class="avatar">
+        <img src="assets/profile.jpg" alt="Profile picture of Mohammad Alipour">
+      </div>
+
       <div style="flex:1">
-        <div class="hero-top-row"><h1>Mohammad Alipour</h1></div>
+        <div class="hero-top-row">
+          <h1>Mohammad Alipour</h1>
+        </div>
+
         <p class="muted">Backend Developer — Clean, responsive interfaces & performance-minded</p>
         <div class="ctas">
           <a class="btn btn-primary" href="#contact">Contact</a>
@@ -43,43 +59,68 @@
     </header>
 
     <main class="grid">
+      <!-- MAIN COLUMN -->
       <section>
-        <div class="card">
+        <div class="card" style="margin-bottom:14px">
           <h2>About</h2>
-          <p class="muted small">Passionate software developer with strong experience in Golang...</p>
+          <p class="muted small">
+            Passionate software developer with strong experience in Golang, focusing on software engineering concepts. Skilled in web server design, database modeling, and creating efficient system flows. Interested in concurrency, operating systems fundamentals, and memory management.
+          </p>
         </div>
 
-        <div class="card">
+        <div class="card" style="margin-bottom:14px">
           <h2>Projects</h2>
           <div class="projects">
-            <div class="project"><strong>BondFlix</strong><p class="small muted">Platform...</p><a href="#">Repo →</a></div>
-            <div class="project"><strong>Cafe Menu API</strong><p class="small muted">Go + PostgreSQL API...</p><a href="#">Repo →</a></div>
-            <div class="project"><strong>Task CLI</strong><p class="small muted">CLI tool...</p><a href="#">Repo →</a></div>
-            <div class="project"><strong>Other</strong><p class="small muted">Open to freelance...</p><a href="#contact">Contact →</a></div>
+            <div class="project">
+              <strong>BondFlix</strong>
+              <p class="small muted">Platform for simultaneous and online movie watching with multiple users.</p>
+              <a href="https://github.com/Mohammad-Alipour/bondflix">Repo →</a>
+            </div>
+            <div class="project">
+              <strong>Cafe Menu API</strong>
+              <p class="small muted">Go + PostgreSQL API for a cafe menu — deployed and monitored.</p>
+              <a href="https://github.com/Mohammad-Alipour/menu-api">Repo →</a>
+            </div>
+            <div class="project">
+              <strong>Task CLI</strong>
+              <p class="small muted">A lightweight CLI tool to manage tasks using Go.</p>
+              <a href="https://github.com/Mohammad-Alipour/task-cli">Repo →</a>
+            </div>
+               <div class="project">
+              <strong>Other</strong>
+              <p class="small muted">Open to freelance & team opportunities.</p>
+              <a href="#contact">Contact →</a>
+            </div>
           </div>
         </div>
 
         <div class="card">
           <h2>Experience</h2>
-          <div class="item"><div class="meta">2022 — 2025</div><h3>Web Developer — Freelance</h3><p class="small muted">Contributed to backend integrations...</p></div>
+          <div class="item">
+            <div class="meta">2022 — 2025</div>
+            <h3>Web Developer — Personal Projects / Freelance</h3>
+            <p class="small muted">Contributed to backend integrations, API consumption, and performance optimization using Go and PostgreSQL.</p>
+          </div>
         </div>
       </section>
 
+      <!-- SIDEBAR -->
       <aside>
-        <div class="card">
+        <div class="card" style="margin-bottom:14px">
           <h2>Skills</h2>
           <div class="skills">
-            <span class="chip" data-level="90">Golang</span>
-            <span class="chip" data-level="85">PostgreSQL</span>
-            <span class="chip" data-level="80">Docker</span>
-            <span class="chip" data-level="70">Git</span>
-            <span class="chip" data-level="88">RESTful APIs</span>
-            <span class="chip" data-level="75">SQL</span>
-            <span class="chip" data-level="95">OOP & Concurrency</span>
+            <span class="chip">Golang</span>
+            <span class="chip">PostgreSQL</span>
+            <span class="chip">Docker</span>
+            <span class="chip">Git</span>
+            <span class="chip">RESTful APIs</span>
+            <span class="chip">SQL</span>
+            <span class="chip">OOP & Concurrency</span>
           </div>
         </div>
 
-        <div class="card"><h2>Education</h2>
+        <div class="card" style="margin-bottom:14px">
+          <h2>Education</h2>
           <div class="small muted">Associate Degree in Computer Engineering</div>
           <div class="meta small muted">University — Tehran</div>
         </div>
@@ -87,15 +128,23 @@
         <div class="card" id="contact">
           <h2>Contact</h2>
           <div class="contact-list">
-            <a href="mailto:imoalipour@gmail.com" class="contact-btn email"><i class="fa-solid fa-envelope"></i> imoalipour@gmail.com</a>
-            <a href="https://github.com/mohammad-alipour" class="contact-btn github"><i class="fa-brands fa-github"></i> mohammad-alipour</a>
-            <a href="https://www.linkedin.com/in/Mohmmadalipour" class="contact-btn linkedin"><i class="fa-brands fa-linkedin"></i> Mohmmadalipour</a>
+            <a href="mailto:imoalipour@gmail.com" class="contact-btn email">
+              <i class="fa-solid fa-envelope"></i> imoalipour@gmail.com
+            </a>
+            <a href="https://github.com/mohammad-alipour" target="_blank" rel="noopener" class="contact-btn github">
+              <i class="fa-brands fa-github"></i> mohammad-alipour
+            </a>
+            <a href="https://www.linkedin.com/in/Mohmmadalipour" target="_blank" rel="noopener" class="contact-btn linkedin">
+              <i class="fa-brands fa-linkedin"></i> Mohmmadalipour
+            </a>
           </div>
         </div>
       </aside>
     </main>
 
-    <footer>Mohammad Alipour - ©2025</footer>
+    <footer>
+      Mohammad Alipour - ©2025
+    </footer>
   </div>
 
   <script src="script.js"></script>
