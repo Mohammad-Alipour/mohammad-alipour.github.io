@@ -382,14 +382,6 @@ footer {
   font-size: 13px;
   text-align: center;
 }
-
-/* PRINT-FRIENDLY */
-@media print {
-  body { padding: 0; background: white; color: black; }
-  .hero { background: transparent; box-shadow: none; }
-  .btn, .toggle-theme { display: none; }
-}
-
 /* SMALL HELPERS */
 .muted { color: var(--muted); }
 .small { font-size: 13px; }
@@ -438,5 +430,136 @@ footer {
 
   html, body {
     overflow-x: hidden;
+  }
+}
+/*Print*/
+@media print {
+  @page {
+    size: A4;
+    margin: 1.2cm;
+  }
+
+  body {
+    background: #fff !important;
+    color: #222 !important;
+    font-size: 11.5pt !important;
+    line-height: 1.5 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .landing,
+  .enter-btn,
+  .toggle-theme,
+  .btn-outline,
+  footer {
+    display: none !important;
+  }
+
+  .wrap {
+    display: block !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    box-shadow: none !important;
+  }
+
+  .grid {
+    display: grid !important;
+    grid-template-columns: 64% 34% !important;
+    column-gap: 1.2cm !important;
+  }
+
+  .card {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    border-radius: 6px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 10px !important;
+    box-shadow: none !important;
+  }
+
+  .hero {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    background: #f4f6fb !important;
+    border: 2px solid #d0d6e0 !important;
+    border-radius: 8px !important;
+    padding: 14px !important;
+    margin-bottom: 14px !important;
+  }
+
+  .hero img {
+    width: 90px !important;
+    height: 90px !important;
+    border-radius: 50% !important;
+    border: 2px solid #0b76ef !important;
+  }
+
+  .hero h1 {
+    font-size: 18pt !important;
+    color: #0b76ef !important;
+    margin: 0 !important;
+  }
+
+  .hero p {
+    font-size: 10pt !important;
+    color: #555 !important;
+  }
+
+  h2 {
+    color: #0b76ef !important;
+    font-size: 12.5pt !important;
+    border-bottom: 1px solid #d0d6e0 !important;
+    margin-bottom: 6px !important;
+    padding-bottom: 2px !important;
+  }
+
+  h3 {
+    color: #333 !important;
+    font-size: 11pt !important;
+    margin-bottom: 3px !important;
+  }
+
+  .meta {
+    color: #777 !important;
+    font-size: 9.5pt !important;
+  }
+
+  .skills .chip {
+    display: inline-block !important;
+    background: #e8f1ff !important;
+    color: #0b76ef !important;
+    border: 1px solid #c6d8ff !important;
+    border-radius: 6px !important;
+    padding: 3px 6px !important;
+    margin: 2px !important;
+    font-size: 9pt !important;
+  }
+
+  a {
+    color: #0b76ef !important;
+    text-decoration: none !important;
+  }
+
+  .project {
+    border-left: 3px solid #0b76ef !important;
+    padding-left: 8px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .project strong {
+    display: block !important;
+    font-size: 10.5pt !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transition: none !important;
+  }
+
+  .card, .item, .project, .hero, .skills {
+    page-break-inside: avoid;
   }
 }
