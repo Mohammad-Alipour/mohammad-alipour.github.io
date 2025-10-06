@@ -7,6 +7,16 @@ document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
   });
 });
 
+// Navbar active state
+const navLinks = document.querySelectorAll('.navbar a');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+
+
 // Theme toggle with auto detection
 const themeBtn = document.getElementById('themeToggle');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
