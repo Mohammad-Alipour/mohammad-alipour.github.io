@@ -59,37 +59,83 @@ if (enterBtn) {
     }, 700);
   });
 }
-// SVG Effect for Skills ===
-document.querySelectorAll('.chip').forEach(chip => {
-  const percent = parseInt(chip.dataset.percent || "0", 10);
-  const waveHeight = 100 - percent;
 
+const skillPercents = {
+  "Golang": 90,
+  "PostgreSQL": 80,
+  "Docker": 75,
+  "Git": 85,
+  "RESTful APIs": 70,
+  "SQL": 80,
+  "OOP & Concurrency": 65
+};
 
-  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+function createWaveSVG(percent) {
+
+  const svgNS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(svgNS, "svg");
   svg.setAttribute("viewBox", "0 0 200 100");
+  svg.setAttribute("preserveAspectRatio", "none");
+  svg.classList.add("skill-wave");
+
   svg.innerHTML = `
     <defs>
-      <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#0a4da8" stop-opacity="0.9"/>
-        <stop offset="100%" stop-color="#062c6a" stop-opacity="1"/>
+      <linearGradient id="g-${Math.random().toString(36).slice(2,9)}" x1="0" y1="0" x2="0" y2="1">
+        <stop class="water-stop-top" offset="0%"/>
+        <stop class="water-stop-bottom" offset="100%"/>
       </linearGradient>
     </defs>
-    <path d="M0 30 Q50 20 100 30 T200 30 V100 H0 Z" fill="url(#waterGrad)">
-      <animateTransform attributeName="transform" attributeType="XML"
-        type="translate" from="0 0" to="-100 0" dur="4s" repeatCount="indefinite" />
-    </path>
-    <path d="M0 35 Q50 25 100 35 T200 35 V100 H0 Z" fill="url(#waterGrad)" opacity="0.5">
-      <animateTransform attributeName="transform" attributeType="XML"
-        type="translate" from="0 0" to="-100 0" dur="6s" repeatCount="indefinite" />
-    </path>
+    <g class="wave-wrap">
+      <g class="wave1">
+        <path d="M0 30 Q25 20 50 30 T100 30 T150 30 T200 30 V100 H0 Z" fill="url(#g-${Math.random().toString(36).slice(2,9)})" />
+      </g>
+      <g class="wave2">
+        <path d="M0 35 Q25 25 50 35 T100 35 T150 35 T200 35 V100 H0 Z" fill="url(#g-${Math.random().toString(36).slice(2,9)})" opacity="0.9"/>
+      </g>
+    </g>
   `;
-  svg.style.transform = `translateY(${waveHeight}%)`;
 
+
+  const maxDown = 55; // percent
+  const minDown = -5; 
+  const translateY = maxDown - ( (percent / 100) * (maxDown - minDown) );
+  svg.style.transform = `translateY(${translateY}%)`;
+
+  return svg;
+}
+
+// Add waves & percent labels to chips
+document.querySelectorAll('.chip').forEach(chip => {
+  // read skill text (trim)
+  const keyText = chip.textContent.trim();
+  const percent = skillPercents.hasOwnProperty(keyText) ? skillPercents[keyText] : 60;
+
+  // create svg wave and append
+  const svg = createWaveSVG(percent);
   chip.appendChild(svg);
 
-  const percentLabel = document.createElement('span');
-  percentLabel.className = 'percent';
-  percentLabel.textContent = `${percent}%`;
-  chip.appendChild(percentLabel);
-});
+  const pct = document.createElement('span');
+  pct.className = 'skill-percent';
+  pct.textContent = `${percent}%`;
+  chip.appendChild(pct);
 
+  // add accessibility / focus
+  chip.setAttribute('tabindex', '0');
+
+  let touchTimer = null;
+  chip.addEventListener('click', (e) => {
+    // toggle class that shows percent
+    chip.classList.add('_show-percent');
+    clearTimeout(touchTimer);
+    touchTimer = setTimeout(() => chip.classList.remove('_show-percent'), 1500);
+  });
+
+  chip.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      chip.classList.add('_show-percent');
+      clearTimeout(touchTimer);
+      touchTimer = setTimeout(() => chip.classList.remove('_show-percent'), 1500);
+    }
+  });
+});

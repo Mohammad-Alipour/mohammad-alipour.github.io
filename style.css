@@ -312,6 +312,9 @@ h2 { margin: 0 0 12px; font-size: 18px; }
   font-size: 14px;
   border: 1px solid rgba(11,118,239,0.06);
   transition: all 0.3s ease;
+  position: relative; /* important for wave placement */
+  overflow: hidden;   /* clip the SVG wave to the pill */
+  z-index: 0;
 }
 body.dark .chip { background: #222; border: 1px solid #333; color: #ddd; }
 
@@ -440,58 +443,82 @@ footer {
     overflow-x: hidden;
   }
 }
-/*  Water Wave Skill  */
-.chip {
-  position: relative;
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #eef4ff;
-  color: #0b1a3d;
-  font-weight: 600;
-  font-size: 13px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-body.dark .chip {
-  background: #222;
-  color: #fff;
-}
-
-.chip:hover {
-  transform: scale(1.08);
-}
-
-.chip svg {
+.chip .skill-wave {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
-  transition: transform 1s ease;
-}
-
-.chip .percent {
-  position: absolute;
-  color: white;
-  font-weight: 700;
-  font-size: 14px;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: 3;
-}
-
-.chip:hover .percent {
+  left: -40%;            /* wider so wave can move */
+  width: 180%;
+  height: 220%;
+  bottom: -30%;
+  z-index: 0;
+  pointer-events: none;
+  transition: transform 0.6s ease;
   opacity: 1;
 }
 
-@keyframes waveMotion {
-  0% { transform: translateX(0); }
+/* ensure the text/content of chip sits above waves */
+.chip > *:not(.skill-wave) {
+  position: relative;
+  z-index: 2;
+}
+
+/* percent label */
+.chip .skill-percent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  opacity: 0;
+  pointer-events: none;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateY(6px);
+}
+
+/* show on hover/focus or when toggled (for touch) */
+.chip:hover .skill-percent,
+.chip._show-percent .skill-percent,
+.chip:focus .skill-percent {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* subtle hover scale (kept small to preserve layout) */
+.chip:hover {
+  transform: translateY(-3px);
+}
+
+/* animation for horizontal wave movement (we animate inner <g>) */
+.chip .wave-wrap g {
+  transform-origin: 0 0;
+  animation: wave-x 4.5s linear infinite;
+}
+.chip .wave-wrap g.wave2 {
+  animation-duration: 7s;
+  animation-direction: reverse;
+  opacity: 0.7;
+}
+
+/* horizontal movement */
+@keyframes wave-x {
+  0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+/* dark mode specific water gradient */
+body.dark .chip .water-stop-top { stop-color: #2b6db1; stop-opacity: 0.95; }
+body.dark .chip .water-stop-bottom { stop-color: #05305a; stop-opacity: 1; }
+
+/* light mode gradient override */
+.chip .water-stop-top { stop-color: #0a66c2; stop-opacity: 0.95; }
+.chip .water-stop-bottom { stop-color: #043169; stop-opacity: 1; }
+
+/* accessible focus outline */
+.chip:focus {
+  outline: 2px solid rgba(11,118,239,0.22);
+  outline-offset: 3px;
 }
