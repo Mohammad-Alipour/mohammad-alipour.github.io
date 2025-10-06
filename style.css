@@ -440,3 +440,55 @@ footer {
     overflow-x: hidden;
   }
 }
+/*  WAVE SKILL EFFECT  */
+.chip {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  z-index: 0;
+  color: #fff;
+  background: #1b1e25;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.chip .wave {
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 50%, rgba(0,0,0,0.25) 20%, transparent 21%) 0 0 / 20px 20px,
+              linear-gradient(to top, rgba(11,118,239,0.55), rgba(11,118,239,0.35));
+  animation: waveMove 5s linear infinite;
+  transform-origin: bottom;
+  border-radius: 50%;
+  z-index: -1;
+  clip-path: inset(calc(100% - var(--fill, 50%)) 0 0 0);
+  transition: clip-path 0.6s ease;
+}
+.chip .wave.second {
+  opacity: 0.6;
+  animation-duration: 8s;
+  animation-direction: reverse;
+}
+
+.chip::after {
+  content: attr(data-level) '%';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+.chip:hover::after { opacity: 1; }
+
+@keyframes waveMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

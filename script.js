@@ -7,7 +7,7 @@ document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(a => {
   });
 });
 
-// Theme toggle with auto detection
+// Theme toggle
 const themeBtn = document.getElementById('themeToggle');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -24,11 +24,10 @@ else applyTheme(prefersDark.matches);
 prefersDark.addEventListener('change', e => applyTheme(e.matches));
 if (themeBtn) themeBtn.addEventListener('click', () => applyTheme(!document.body.classList.contains('dark')));
 
-// Typing effect for landing subtitle
+// Typing effect
 const typeText = document.getElementById("typeText");
 const text = "Backend Developer — Golang & System Design";
 let idx = 0;
-
 function type() {
   if (idx < text.length) {
     typeText.textContent += text.charAt(idx);
@@ -42,7 +41,6 @@ if (typeText) type();
 const landing = document.getElementById('landing');
 const enterBtn = document.getElementById('enterBtn');
 const resumeWrap = document.querySelector('.wrap');
-
 if (enterBtn) {
   enterBtn.addEventListener('click', () => {
     if (landing.classList.contains('fade-out')) return;
@@ -59,3 +57,18 @@ if (enterBtn) {
     }, 700);
   });
 }
+
+//  WAVE EFFECT for Skills 
+document.querySelectorAll('.chip').forEach(chip => {
+  const level = parseInt(chip.dataset.level || 0);
+  const wave1 = document.createElement('div');
+  const wave2 = document.createElement('div');
+  wave1.classList.add('wave');
+  wave2.classList.add('wave', 'second');
+  chip.appendChild(wave1);
+  chip.appendChild(wave2);
+
+  const fillPercent = Math.min(Math.max(level, 0), 100);
+  wave1.style.setProperty('--fill', `${fillPercent}%`);
+  wave2.style.setProperty('--fill', `${fillPercent}%`);
+});
