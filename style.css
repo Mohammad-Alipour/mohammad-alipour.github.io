@@ -496,10 +496,10 @@ footer {
 @media (max-width: 768px) {
   .navbar {
     top: 20px;
-    padding: 8px 18px;
+    padding: 7px 17px;
   }
   .navbar ul {
-    gap: 18px;
+    gap: 17px;
   }
   .navbar a {
     font-size: 14px;
